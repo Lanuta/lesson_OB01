@@ -36,7 +36,7 @@ class TaskManager:
             self.tasks[task_index].mark_as_done()
 
     def get_current_tasks(self):
-        """Вывести список не выполненных задач"""
+        """Получить список текущих (невыполненных) задач"""
         return [task for task in self.tasks if not task.status]
 
     def check_overdue_tasks(self):
@@ -82,7 +82,11 @@ while True:
 # Проверяем просроченные задачи и задаём вопросы пользователю
 task_manager.check_overdue_tasks()
 
-# Выводим все задачи
-print("\nВсе задачи:")
-for task in task_manager.tasks:
-    print(task)
+# Выводим все текущие (невыполненные) задачи
+print("\nТекущие задачи (не выполненные):")
+current_tasks = task_manager.get_current_tasks()
+if current_tasks:
+    for task in current_tasks:
+        print(task)
+else:
+    print("Нет невыполненных задач.")
